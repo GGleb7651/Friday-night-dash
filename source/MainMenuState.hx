@@ -46,6 +46,10 @@ class MainMenuState extends MusicBeatState
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
 	var debugKeys:Array<FlxKey>;
+	
+	
+	var danceLeft:Bool = false;
+	var titleText:FlxSprite;
 
 	override function create()
 	{
@@ -181,6 +185,17 @@ class MainMenuState extends MusicBeatState
 		var lerpVal:Float = CoolUtil.boundTo(elapsed * 7.5, 0, 1);
 		camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
 
+GFMain menu
+
+				gfDance.frames = Paths.getSparrowAtlas('ggleb');
+				gfDance.animation.addByIndices('danceLeft', 'idle', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, true);
+
+				if(gfDance != null) {
+			danceLeft = !danceLeft;
+			if (danceLeft)
+				gfDance.animation.play('danceLeft');
+			else
+		}
 		if (!selectedSomethin)
 		{
 			if (controls.UI_UP_P)
