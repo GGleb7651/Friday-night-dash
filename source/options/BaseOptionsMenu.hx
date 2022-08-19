@@ -8,7 +8,6 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.addons.transition.FlxTransitionableState;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
@@ -124,10 +123,6 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 		changeSelection();
 		reloadCheckboxes();
-
-                #if android
-                addVirtualPad(FULL, A_B_C);
-                #end
 	}
 
 	public function addOption(option:Option) {
@@ -150,12 +145,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		}
 
 		if (controls.BACK) {
-			#if android
-                        FlxTransitionableState.skipNextTransOut = true;
-			FlxG.resetState();
-                        #else
-                        close();
-                        #end
+			close();
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 		}
 
@@ -248,7 +238,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 				}
 			}
 
-			if(controls.RESET #if android || _virtualpad.buttonC.justPressed #end)
+			if(controls.RESET)
 			{
 				for (i in 0...optionsArray.length)
 				{
